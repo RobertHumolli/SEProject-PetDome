@@ -28,6 +28,12 @@
   color: #61dafb;
 }
 
+.app-container {
+  background-image: url('./Components/Dog.jpg'); /* Set the background image */
+  background-size: cover; /* Cover the entire container */
+  background-repeat: no-repeat; /* Do not repeat the image */
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
