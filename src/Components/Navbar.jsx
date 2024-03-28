@@ -13,13 +13,13 @@ function Navbar(props) {
 
     return (
         <nav className='nav'>
-            <Link to="/" className="nav__brand">PetDome</Link> {/* Use Link component for the brand */}
+            <Link to="/about" className="nav__brand">PetDome</Link> {/* Use Link component for the brand */}
             <ul className={active}>
                 {/* Use Link component with the 'to' prop set to the path of the AboutPage */}
                 <li className="nav__item"><Link to="/about" className="nav__link">About</Link></li>
                 <li className="nav__item"><a href="#" className="nav__link">Qualifications</a></li>
-                <li className="nav__item"><a href="#" className="nav__link">Login</a></li>
-                <li className="nav__item"><a href="#" className="nav__link">Register</a></li>
+                <li className="nav__item"><a href="/login" className="nav__link">Login</a></li>
+                <li className="nav__item"><a href="/register" className="nav__link">Register</a></li>
             </ul>
             <div onClick={navToggle} className={toggleIcon}>
                 <div className="line1"></div>
