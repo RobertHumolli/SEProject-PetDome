@@ -8,7 +8,18 @@ import Register from './pages/Register';
 import Qualifications from './pages/Qualifications';
 import home from './pages/home';
 
+const colors = {
+  orange: "#FFBA5A",
+  grey: "#a9a9a9"
+
+}
+
+
 function App() {
+
+ 
+
+
 
 
   return (
@@ -24,6 +35,10 @@ function App() {
           </Routes>
     </Router>
   );
+  
+
+
+
 }
 
 export default App;
