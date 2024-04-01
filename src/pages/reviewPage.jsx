@@ -60,7 +60,7 @@ const ReviewPage = () => { // Corrected component name to start with uppercase l
     setOtherPetInfo(event.target.value);
   };
 
-
+//
 
   const stars = Array(5).fill(0);
 
