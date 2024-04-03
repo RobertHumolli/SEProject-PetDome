@@ -17,7 +17,7 @@ function Navbar(props) {
             <ul className={active}>
                 {/* Use Link component with the 'to' prop set to the path of the AboutPage */}
                 <li className="nav__item"><Link to="/about" className="nav__link">About</Link></li>
-                <li className="nav__item"><a href="#" className="nav__link">Qualifications</a></li>
+                <li className="nav__item"><Link to="/qualifications" className="nav__link">Qualifications</Link></li>
                 <li className="nav__item"><Link to="/Login" className="nav__link">Login</Link></li>
                 <li className="nav__item"><Link to="/Register" className="nav__link">Register</Link></li>
             </ul>

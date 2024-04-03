@@ -1,0 +1,20 @@
+.qual-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; /* Updated */
+    height: 100vh;
+}
+
+.qual-container h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.qual-container p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
