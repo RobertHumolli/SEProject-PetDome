@@ -2,6 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './Components/Navbar';
 import AboutPage from './Components/AboutPage';
+import Login from './Login';
+import Register from './Register';
 
 function App() {
 
@@ -21,6 +23,8 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/about" element={<AboutPage />} /> {/* 'component' prop is replaced with 'element' */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
       </div>
     </Router>

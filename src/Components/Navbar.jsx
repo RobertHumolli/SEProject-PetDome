@@ -18,8 +18,8 @@ function Navbar(props) {
                 {/* Use Link component with the 'to' prop set to the path of the AboutPage */}
                 <li className="nav__item"><Link to="/about" className="nav__link">About</Link></li>
                 <li className="nav__item"><a href="#" className="nav__link">Qualifications</a></li>
-                <li className="nav__item"><a href="#" className="nav__link">Login</a></li>
-                <li className="nav__item"><a href="#" className="nav__link">Register</a></li>
+                <li className="nav__item"><Link to="/Login" className="nav__link">Login</Link></li>
+                <li className="nav__item"><Link to="/Register" className="nav__link">Register</Link></li>
             </ul>
             <div onClick={navToggle} className={toggleIcon}>
                 <div className="line1"></div>
