@@ -4,7 +4,7 @@ import './AboutPage.css';
 const AboutPage = () => {
 
   const backgroundImageStyle = {
-    backgroundImage: 'url(/Dog.jpg)', 
+    
     backgroundSize: 'cover', // Change to 'cover' to fill the container
     backgroundPosition: 'center center',
     backgroundRepeat: 'no-repeat',
