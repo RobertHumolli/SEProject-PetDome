@@ -4,6 +4,7 @@ import Navbar from './Components/Navbar';
 import AboutPage from './Components/AboutPage';
 import Login from './Login';
 import Register from './Register';
+import Qualifications from './Components/QualPage';
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/about" element={<AboutPage />} /> {/* 'component' prop is replaced with 'element' */}
+          <Route path="/qualifications" element={<Qualifications />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
         </Routes>
