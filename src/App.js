@@ -3,11 +3,11 @@ import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Navbar from './Components/Navbar';
 import AboutPage from './Components/AboutPage';
 
-import reviewPage from './pages/reviewPage';
-import Login from './Login';
-import Register from './Register';
+import reviewPage from './Components/reviewPage';
+import Login from './Components/Login';
+import Register from './Components/Register';
 import Qualifications from './Components/QualPage';
-import home from './pages/home';
+import home from './Components/home';
 
 const colors = {
   orange: "#FFBA5A",
