@@ -17,7 +17,7 @@ function Qualifications() {
 
     return (
         <div className="qual-container">
-            <h1>Please upload your qualifications files</h1>
+            <h1>Please upload your qualifications</h1>
             <input type="file" multiple onChange={file_upload} />
             {files.map((file, index) => (
                 <div key={index}>
