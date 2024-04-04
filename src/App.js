@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Navbar from './Components/navbar';
 import AboutPage from './Components/AboutPage';
+
 import reviewPage from './pages/reviewPage';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -14,7 +15,6 @@ const colors = {
 
 }
 
-
 function App() {
 
  
@@ -25,6 +25,7 @@ function App() {
   return (
     <Router>
         <Navbar />
+
           <Routes>
             <Route path="/" exact Component={home} /> {/* 'component' prop is replaced with 'element' */}
             <Route path="/About"Component={AboutPage} /> {/* 'component' prop is replaced with 'element' */}
@@ -33,6 +34,7 @@ function App() {
             <Route path="/Register" Component={Register} /> {/* 'component' prop is replaced with 'element' */}
             <Route path="/Qualifications" Component={Qualifications} /> {/* 'component' prop is replaced with 'element' */}
           </Routes>
+        
     </Router>
   );
   
