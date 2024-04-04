@@ -4,9 +4,9 @@ import Navbar from './Components/navbar';
 import AboutPage from './Components/AboutPage';
 
 import reviewPage from './pages/reviewPage';
-import Login from './pages/Login';
-import Register from './pages/Register';
-import Qualifications from './pages/Qualifications';
+import Login from './Login';
+import Register from './Register';
+import Qualifications from './Components/QualPage';
 import home from './pages/home';
 
 const colors = {
@@ -28,7 +28,7 @@ function App() {
 
           <Routes>
             <Route path="/" exact Component={home} /> {/* 'component' prop is replaced with 'element' */}
-            <Route path="/About"Component={AboutPage} /> {/* 'component' prop is replaced with 'element' */}
+            <Route path="/About" Component={AboutPage} /> {/* 'component' prop is replaced with 'element' */}
             <Route path="/review" Component={reviewPage} /> {/* 'component' prop is replaced with 'element' */}
             <Route path="/Login" Component={Login} /> {/* 'component' prop is replaced with 'element' */}
             <Route path="/Register" Component={Register} /> {/* 'component' prop is replaced with 'element' */}
