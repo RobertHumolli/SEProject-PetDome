@@ -4,8 +4,8 @@ import Navbar from './Components/Navbar';
 import AboutPage from './Components/AboutPage';
 
 import reviewPage from './pages/reviewPage';
-import Login from './Login';
-import Register from './Register';
+import Login from './Components/Login';
+import Register from './Components/Register';
 import Qualifications from './Components/QualPage';
 import home from './pages/home';
 
