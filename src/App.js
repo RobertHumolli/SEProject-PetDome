@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Navbar from './Components/Navbar';
 import AboutPage from './Components/AboutPage';
-
+import Profile from './Components/Profile';
 import reviewPage from './Components/reviewPage';
 import Login from './Components/Login';
 import Register from './Components/Register';
@@ -25,7 +25,6 @@ function App() {
   return (
     <Router>
         <Navbar />
-
           <Routes>
             <Route path="/" exact Component={home} /> {/* 'component' prop is replaced with 'element' */}
             <Route path="/About" Component={AboutPage} /> {/* 'component' prop is replaced with 'element' */}
@@ -33,6 +32,7 @@ function App() {
             <Route path="/Login" Component={Login} /> {/* 'component' prop is replaced with 'element' */}
             <Route path="/Register" Component={Register} /> {/* 'component' prop is replaced with 'element' */}
             <Route path="/Qualifications" Component={Qualifications} /> {/* 'component' prop is replaced with 'element' */}
+            <Route path="/Profile" Component={Profile} /> {/* 'component' prop is replaced with 'element' */}
           </Routes>
         
     </Router>
