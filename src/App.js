@@ -10,6 +10,7 @@ import Qualifications from './Components/QualPage';
 import home from './Components/home';
 import Search from './Components/Search';
 
+
 const colors = {
   orange: "#FFBA5A",
   grey: "#a9a9a9"

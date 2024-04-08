@@ -98,3 +98,8 @@ a{
     background-color: #0e1d49;
     border-color: #1b1752;
 }
+
+.nav__image {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
