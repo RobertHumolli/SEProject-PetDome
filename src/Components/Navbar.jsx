@@ -43,7 +43,8 @@ function Navbar() {
             <Link to="/about" className="nav__brand">PetDome</Link>
             <ul className={active}>
                 
-                {!isAuthenticated && (               //if the user is not logged in, display the login and register buttons
+                {!isAuthenticated && (  
+                                  //if the user is not logged in, display the login and register buttons
                     <>
                         <li className="nav__item"><Link to="/about" className="nav__link">About</Link></li>
                         <li className="nav__item"><Link to="/qualifications" className="nav__link">Qualifications</Link></li>
@@ -52,11 +53,11 @@ function Navbar() {
                         
                     </>
                 )}
-                {isAuthenticated && (          //if the user is logged in, display the review, profile and logout buttons
+                {isAuthenticated &&  (          //if the user is logged in, display the review, profile and logout buttons
                     <>
                         <li className="nav__item"><Link to="/about" className="nav__link">About</Link></li>
                         <li className="nav__item"><Link to="/qualifications" className="nav__link">Qualifications</Link></li>
-                        <li className="nav__item"><Link to="/review" className="nav__link">Review</Link></li>
+                        <li className="nav__item"><Link to={profileData.isPetOwner ? '/reviewPage' : '/reviewPage2'} className="nav__link">Review</Link></li>
                         <li className="nav__item"><Link to="/profile" className="nav__link">Profile</Link></li>
                         <li className="nav__item"><button onClick={handleLogout} className="nav__link">Logout</button></li>
                     </>

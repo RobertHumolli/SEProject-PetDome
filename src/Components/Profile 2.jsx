@@ -1,4 +1,4 @@
-//PROFILE FOR PET MINDER
+//PROFILE FOR PET OWNER
 
 import React, { useState, useEffect } from 'react';
 import './Profile.css'; // Import the CSS file for styling
