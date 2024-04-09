@@ -9,6 +9,8 @@ import Login from './Components/Login';
 import Register from './Components/Register';
 import Qualifications from './Components/QualPage';
 import home from './Components/home';
+import Search from './Components/Search';
+
 import Profile2 from './Components/Profile 2';
 
 const colors = {
@@ -64,6 +66,7 @@ function App() {
             <Route path="/Qualifications" Component={Qualifications} /> {/* 'component' prop is replaced with 'element' */}
             <Route path="/Profile" Component={Profile} /> {/* 'component' prop is replaced with 'element' */}
             <Route path="/Profile 2" Component={Profile2} /> {/* 'component' prop is replaced with 'element' */}
+            <Route path="/Search" Component={Search} /> {/* 'component' prop is replaced with 'element' */}
           </Routes>
           </ProfileDataContext.Provider>
         

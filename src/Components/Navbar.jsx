@@ -88,6 +88,7 @@ function Navbar() {
                             <li className="nav__item"><Link to="/review" className="nav__link">Review</Link></li>
                         )}
                         <li className="nav__item"><Link to="/profile" className="nav__link">Profile</Link></li>
+                        <li className="nav__item"><Link to="/search" className="nav__link"><img src="/searchicon.png" alt="Search" className='nav__image' /></Link></li>
                         <li className="nav__item"><button onClick={handleLogout} className="nav__link">Logout</button></li>
                     </>
                 )}
