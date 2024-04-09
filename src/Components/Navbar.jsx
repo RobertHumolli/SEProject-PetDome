@@ -13,7 +13,7 @@ function Navbar() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);        //initialize the state to be used to know if the user is logged in
 
     const [profileData, setProfileData] = useState(null);
-    const [currentUser, setCurrentUser] = useState(null);   
+   
    
     const location = useLocation();
 
