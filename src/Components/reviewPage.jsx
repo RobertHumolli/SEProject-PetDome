@@ -105,7 +105,7 @@ const ReviewPage = () => { // Corrected component name to start with uppercase l
         ))}
       </div>
       <div style={styles.container}>
-        <h4> What type of pet did the pet minder take care of?</h4>
+        <h4> What type of pet did you take care of?</h4>
         <form style={styles.form}>
         
             <select value={myPet} onChange={handleChange1} style={styles.select}>
