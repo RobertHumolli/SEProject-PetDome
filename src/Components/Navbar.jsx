@@ -1,21 +1,35 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
-import { auth } from './firebase';
+import { auth, db } from './firebase';
 import './Navbar.css';
+import { getDocs, collection, query, where } from 'firebase/firestore';
+// import { useProfileData } from'./Profile';
+
 
 function Navbar() {
     const [active, setActive] = useState('nav__menu');
     const [toggleIcon, setToggleIcon] = useState('nav__toggler');
     const [isAuthenticated, setIsAuthenticated] = useState(false);        //initialize the state to be used to know if the user is logged in
+
+    const [profileData, setProfileData] = useState(null);
+    const [currentUser, setCurrentUser] = useState(null);   
+   
     const location = useLocation();
 
     useEffect(() => {       //use effect to check if the user is logged in and set the state accordingly
-        const unsubscribe = onAuthStateChanged(auth, (user) => {   
+        const unsubscribe = onAuthStateChanged(auth, async (user) => {   
             setIsAuthenticated(!!user);
+            if (user) {
+                fetchUserData(user.email);
+            }
         });
         return () => unsubscribe();
     }, []);
+
+
+
+
 
     useEffect(() => {           //use effect to check if the user is logged in and display the navigation bar accordingly
         if (isAuthenticated) {
@@ -38,6 +52,15 @@ function Navbar() {
         }
     };
 
+    const fetchUserData = async (email) => {        
+        const q = query(collection(db, 'petOwnerData'), where('email', '==', email)); //this is a firebase query to retrive user data from the database
+        const querySnapshot = await getDocs(q);    //waits for the results of the query and matches the qurery with criteria
+        if (!querySnapshot.empty) {
+            const userData = querySnapshot.docs[0].data();     //if the query is not empty, it fetches the data
+            setProfileData(userData);       //sets the profile data at the top of this page to the fetched data
+        }
+    };
+
     return (
         <nav className="nav">
             <Link to="/about" className="nav__brand">PetDome</Link>
@@ -57,7 +80,14 @@ function Navbar() {
                     <>
                         <li className="nav__item"><Link to="/about" className="nav__link">About</Link></li>
                         <li className="nav__item"><Link to="/qualifications" className="nav__link">Qualifications</Link></li>
-                        <li className="nav__item"><Link to={profileData.isPetOwner ? '/reviewPage' : '/reviewPage2'} className="nav__link">Review</Link></li>
+                        {profileData && profileData.isPetOwner ? (
+                            <li className="nav__item"><Link to= '/review' className="nav__link">Review</Link></li>
+
+
+                        ) : (
+
+                            <li className="nav__item"><Link to="/review 2" className="nav__link">Review</Link></li>
+                        )}
                         <li className="nav__item"><Link to="/profile" className="nav__link">Profile</Link></li>
                         <li className="nav__item"><button onClick={handleLogout} className="nav__link">Logout</button></li>
                     </>

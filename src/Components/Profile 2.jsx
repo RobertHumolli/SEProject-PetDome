@@ -5,6 +5,7 @@ import './Profile.css'; // Import the CSS file for styling
 import { db, auth } from './firebase'; //initialize Firebase
 import { getDocs, collection, query, where } from 'firebase/firestore';
 
+
 function Profile() {
     const [currentUser, setCurrentUser] = useState(null);   // Initialize  current user state
     const [profileData, setProfileData] = useState(null);  // Initialize  profile data state

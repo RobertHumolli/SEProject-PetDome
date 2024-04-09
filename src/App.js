@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Navbar from './Components/Navbar';
 import AboutPage from './Components/AboutPage';
@@ -17,7 +17,33 @@ const colors = {
 
 }
 
+const ProfileDataContext = createContext();
+
+// Custom hook to access profile data
+
 function App() {
+  const [profileData, setProfileData] = useState(null);
+  const [currentUser, setCurrentUser] = useState(null);
+
+  useEffect(() => {
+    // Simulating authentication check
+    // You should replace this with your authentication logic
+    const user = { email: 'example@example.com' }; // Mock user data
+    setCurrentUser(user);
+    fetchUserData(user.email); // Fetch profile data
+  }, []);
+
+  const fetchUserData = async (email) => {
+    // Simulating fetching profile data from database
+    // You should replace this with your database fetching logic
+    const userData = {
+      email: email,
+      username: 'Example User',
+      isPetOwner: true, // Example boolean indicating if user is a pet owner
+      // Other profile data...
+    };
+    setProfileData(userData);
+  };
 
  
 
@@ -26,6 +52,7 @@ function App() {
 
   return (
     <Router>
+      <ProfileDataContext.Provider value={{ profileData }}>
         <Navbar />
           <Routes>
             <Route path="/" exact Component={home} /> {/* 'component' prop is replaced with 'element' */}
@@ -38,6 +65,7 @@ function App() {
             <Route path="/Profile" Component={Profile} /> {/* 'component' prop is replaced with 'element' */}
             <Route path="/Profile 2" Component={Profile2} /> {/* 'component' prop is replaced with 'element' */}
           </Routes>
+          </ProfileDataContext.Provider>
         
     </Router>
   );

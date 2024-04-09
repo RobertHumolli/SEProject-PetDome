@@ -1,9 +1,11 @@
 // REVIEW PAGE FOR PET MINDER
 
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './reviewPage.css';
 import { FaStar } from "react-icons/fa";
+import { auth, db } from './firebase';
+
 
 
 
@@ -18,6 +20,26 @@ const ReviewPage = () => { // Corrected component name to start with uppercase l
   const [myPet, setMyPet] = useState("Dog");
   const [otherPetInfo, setOtherPetInfo] = useState('');
   const [feedback, setFeedback] = useState('');
+
+
+  const [profileData, setProfileData] = useState(null); // State to store profile data
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        await fetchProfileData(user.email); // Fetch profile data when the component mounts
+      }
+    });
+    return () => unsubscribe();
+  }, []);
+
+  const fetchProfileData = async (email) => {
+    const userRef = db.collection('profiles').doc(email);
+    const doc = await userRef.get();
+    if (doc.exists) {
+      setProfileData(doc.data());
+    }
+  };
 
   const handleSubmit = (e)=> {
     e.preventDefault();
