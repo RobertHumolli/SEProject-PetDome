@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { auth, db } from './firebase';
 import './Navbar.css';
-import { getDocs, collection, query, where } from 'firebase/firestore';
+// import { getDocs, collection, query, where } from 'firebase/firestore';
+import { getDocs, collection, query, where} from 'firebase/firestore';
 // import { useProfileData } from'./Profile';
 
 
@@ -13,9 +14,7 @@ function Navbar() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);        //initialize the state to be used to know if the user is logged in
 
     const [profileData, setProfileData] = useState(null);
-   
-   
-    const location = useLocation();
+
 
     useEffect(() => {       //use effect to check if the user is logged in and set the state accordingly
         const unsubscribe = onAuthStateChanged(auth, async (user) => {   
@@ -81,12 +80,12 @@ function Navbar() {
                         <li className="nav__item"><Link to="/about" className="nav__link">About</Link></li>
                         <li className="nav__item"><Link to="/qualifications" className="nav__link">Qualifications</Link></li>
                         {profileData && profileData.isPetOwner ? (
-                            <li className="nav__item"><Link to= '/review' className="nav__link">Review</Link></li>
+                            <li className="nav__item"><Link to= '/review 2' className="nav__link">Review</Link></li>
 
 
                         ) : (
 
-                            <li className="nav__item"><Link to="/review 2" className="nav__link">Review</Link></li>
+                            <li className="nav__item"><Link to="/review" className="nav__link">Review</Link></li>
                         )}
                         <li className="nav__item"><Link to="/profile" className="nav__link">Profile</Link></li>
                         <li className="nav__item"><button onClick={handleLogout} className="nav__link">Logout</button></li>
