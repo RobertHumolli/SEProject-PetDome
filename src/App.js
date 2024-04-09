@@ -60,7 +60,7 @@ function App() {
             <Route path="/review" Component={reviewPage} /> {/* 'component' prop is replaced with 'element' */}
             <Route path="/review 2" Component={reviewPage2} /> {/* 'component' prop is replaced with 'element' */}
             <Route path="/Login" Component={Login} /> {/* 'component' prop is replaced with 'element' */}
-            <Route path="/Register" Component={Register} /> {/* 'component' prop is replaced with 'element' */}
+            <Route path="/register" Component={Register} /> {/* 'component' prop is replaced with 'element' */}
             <Route path="/Qualifications" Component={Qualifications} /> {/* 'component' prop is replaced with 'element' */}
             <Route path="/Profile" Component={Profile} /> {/* 'component' prop is replaced with 'element' */}
             <Route path="/Profile 2" Component={Profile2} /> {/* 'component' prop is replaced with 'element' */}

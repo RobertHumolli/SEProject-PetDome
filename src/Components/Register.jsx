@@ -3,51 +3,84 @@ import './Login.css';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { db } from './firebase';
 import { useNavigate } from 'react-router-dom';
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, addDoc, getDocs, query, where } from 'firebase/firestore';
 
 function Register() {
-    const [newUsername, setNewUsername] = useState('');           //intialzie all the states to be used to store data
-    const [newPetName, setNewPetName] = useState('');
-    const [newPetAge, setNewPetAge] = useState(0);
-    const [newPetInfo, setNewPetInfo] = useState('');
-    const [newisPetOwner, setNewisPetOwner] = useState(true);
+    const [newUsername, setNewUsername] = useState('');
     const [newEmail, setNewEmail] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [newAge, setNewAge] = useState(0);
     const [newLocation, setNewLocation] = useState('');
+    const [newisPetOwner, setNewisPetOwner] = useState(true);
+    const [newPetData, setNewPetData] = useState({
+        petName: '',
+        petAge: 0,
+        petInfo: ''
+    });
 
-    const profileDataRef = collection(db, 'petOwnerData');         //reference to the collection in the databas
+    const profileDataRef = collection(db, 'petOwnerData');
 
-    const onSubmitProfileData = async (e) => {                //function to submit the data to the database when registered
-        try {
-            if (newisPetOwner) {                     //if pet owner is true then it adds ther pet details else it will add the pet minder details
-                await addDoc(profileDataRef, {
-                    username: newUsername,
-                    petName: newPetName,
-                    petAge: newPetAge,
-                    petInfo: newPetInfo,
-                    isPetOwner: newisPetOwner,
-                    email: newEmail,
-                    password: newPassword
-                });
-            } else {
-                await addDoc(profileDataRef, {                 //add doc is used in firestore to add to a the database
-                    username: newUsername,
-                    age: newAge,
-                    location: newLocation,
-                    isPetOwner: newisPetOwner,
-                    email: newEmail,
-                    password: newPassword
-                });
+    const onSubmitProfileData = async (e) => {
+        e.preventDefault();
+
+        // Check if the username is already in use
+        const q = query(profileDataRef, where('username', '==', newUsername));
+        const querySnapshot = await getDocs(q);
+
+        if (querySnapshot.empty) {
+            // The username is not in use, so we can proceed with registration
+            try {
+                const auth = getAuth();
+                const credential = await createUserWithEmailAndPassword(auth, newEmail, newPassword);
+
+                if (credential.user) {
+                    let userData = {
+                        username: newUsername,
+                        age: newAge,
+                        location: newLocation,
+                        isPetOwner: newisPetOwner,
+                        email: newEmail,
+                        password: newPassword
+                    };
+
+                    if (newisPetOwner) {
+                        // Create a unique identifier for the pet
+                        const petId = `pet${Date.now()}`;
+
+                        // Create the pet object
+                        const newPet = {
+                            petName: newPetData.petName,
+                            petAge: newPetData.petAge,
+                            petInfo: newPetData.petInfo
+                        };
+
+                        // Add the pet to the user data
+                        userData = {
+                            ...userData,
+                            pets: {
+                                ...userData.pets,
+                                [petId]: newPet
+                            }
+                        };
+                    }
+
+                    await addDoc(profileDataRef, userData);
+
+                    navigate('/');
+                }
+            } catch (error) {
+                console.error('Error registering user:', error);
+                alert('Email already in use. Please choose a different email.');
             }
-        } catch (error) {
-            console.error('Error adding data:', error);
+        } else {
+            // The username is already in use, so we display an error message
+            alert('Username is already in use. Please choose a different username.');
         }
     };
 
-    const navigate = useNavigate();               //useNavigate is used to navigate to the another page
+    const navigate = useNavigate();
 
-    const handleChange = (e) => {                   //function to handle the change in the input fields
+    const handleChange = (e) => {
         const { name, value } = e.target;
         if (name === "email") {
             setNewEmail(value);
@@ -58,24 +91,7 @@ function Register() {
         }
     };
 
-    const handleRegister = async (e) => {               //this stores the email and password in firebase authentication where as the other data is in firestore
-                                                       
-        e.preventDefault();
-
-        try {
-            const auth = getAuth();          
-            const credential = await createUserWithEmailAndPassword(auth, newEmail, newPassword);
-
-            if (credential.user) {
-                navigate('/');                                //if successful, it navigates to the home page
-            }
-        } catch (error) {
-            
-            alert('Make sure the email is not in use and or the password is at least 6 characters long.');
-        }
-    };
-
-    return (               
+    return (
         <div>
             <meta charSet="UTF-8" />
             <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
@@ -84,27 +100,29 @@ function Register() {
             <link rel="stylesheet" href="/css/styles.css" />
             <div className="login-page">
                 <div className="form">
-                    <form className="register-form" onSubmit={handleRegister}>
+                    <form className="register-form" onSubmit={onSubmitProfileData}>
                         <h2>Register</h2>
                         <input type="text" name="email" placeholder="Email *" value={newEmail} required onChange={handleChange} />
                         <input type="password" name="password" placeholder="Password *" value={newPassword} required onChange={handleChange} />
                         <input placeholder='Username' type='text' name='username' required onChange={(e) => setNewUsername(e.target.value)} />
                         {newisPetOwner &&
                             <>
-                                <input placeholder='Pet Name' type='text' name='petName' required onChange={(e) => setNewPetName(e.target.value)} />
-                                <input placeholder='Pet Age' type='number' name='petAge' required onChange={(e) => setNewPetAge(Number(e.target.value))} />
-                                <textarea placeholder='Pet Info' type='text' name='petInfo' required onChange={(e) => setNewPetInfo(e.target.value)} />
+                                <input placeholder='Age' type='number' name='age' required onChange={(e) => setNewAge(Number(e.target.value))} />
+                                <input placeholder='Address' type='text' name='Address' required onChange={(e) => setNewLocation(e.target.value)} />
+                                <input placeholder='Pet Name' type='text' name='petName' required onChange={(e) => setNewPetData({ ...newPetData, petName: e.target.value })} />
+                                <input placeholder='Pet Age' type='number' name='petAge' required onChange={(e) => setNewPetData({ ...newPetData, petAge: Number(e.target.value) })} />
+                                <textarea placeholder='Pet Info' type='text' name='petInfo' required onChange={(e) => setNewPetData({ ...newPetData, petInfo: e.target.value })} />
                             </>
                         }
                         {!newisPetOwner &&
                             <>
                                 <input placeholder='Age' type='number' name='age' required onChange={(e) => setNewAge(Number(e.target.value))} />
-                                <input placeholder='Location' type='text' name='location' required onChange={(e) => setNewLocation(e.target.value)} />
+                                <input placeholder='Address' type='text' name='address' required onChange={(e) => setNewLocation(e.target.value)} />
                             </>
                         }
                         <label htmlFor='isPetOwner'>Pet Minder? Uncheck This Box</label>
                         <input type='checkbox' defaultChecked='true' name='isPetOwner' onChange={(e) => setNewisPetOwner(e.target.checked)} />
-                        <button type="submit" className="btn" onClick={onSubmitProfileData}>
+                        <button type="submit" className="btn">
                             <span />
                             <span />
                             <span />
