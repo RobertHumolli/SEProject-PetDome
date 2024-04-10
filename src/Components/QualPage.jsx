@@ -21,17 +21,17 @@ function Qualifications() {
             <input type="file" multiple onChange={file_upload} />
             {files.length > 0 ? (
                 <div>
-                    <p>Thank you for uploading the following files:</p>
-                    <p>Click on the 'Remove' button to remove a file.</p>
+                    <p class ="file_desc1">Thank you for uploading the following files:</p>
+                    <p class = "file_desc2">Click on the 'Remove' button to remove a file.</p>
                     {files.map((file, index) => (
                         <div key={index}>
-                            <p>{file.name}</p>
+                            <p className='file_name'>{file.name}</p>
                             <button onClick={() => file_remove(index)}>Remove</button>
                         </div>
                     ))}
                 </div>
             ) : (
-                <p>No files uploaded yet.</p>
+                <p class = "file_desc1">No files uploaded yet.</p>
             )}
         </div>
     );

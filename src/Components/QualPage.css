@@ -15,8 +15,19 @@
     margin-bottom: 20px;
 }
 
-.qual-container p {
+.file_name {
     font-size: 1.5rem;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.file_desc1 {
+    font-size: 2.5rem;
     line-height: 0.5;
-    margin-top: 50px; 
+    margin-top: 150px;
+    font-weight: bold;
+}
+
+.file_desc2 {
+    margin-top: 50px
 }
