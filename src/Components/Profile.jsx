@@ -1,3 +1,5 @@
+//PROFILE FOR PET MINDER
+
 import React, { useState, useEffect } from 'react';
 import './Profile.css'; // Import the CSS file for styling
 import { db, auth } from './firebase'; // Initialize Firebase

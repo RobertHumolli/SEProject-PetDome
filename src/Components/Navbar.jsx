@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { auth, db } from './firebase';
 import './Navbar.css';
@@ -16,7 +16,6 @@ function Navbar() {
     const [toggleIcon, setToggleIcon] = useState('nav__toggler');
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [profileData, setProfileData] = useState(null);
-    const location = useLocation();
 
     const navigate = useNavigate();
 
@@ -32,7 +31,11 @@ function Navbar() {
         return () => unsubscribe();
     }, []);
 
-    useEffect(() => {
+
+
+
+
+    useEffect(() => {           //use effect to check if the user is logged in and display the navigation bar accordingly
         if (isAuthenticated) {
             setActive('nav__menu');
             setToggleIcon('nav__toggler toggle');
@@ -54,12 +57,12 @@ function Navbar() {
         }
     };
 
-    const fetchUserData = async (email) => {
-        const q = query(collection(db, 'petOwnerData'), where('email', '==', email));
-        const querySnapshot = await getDocs(q);
+    const fetchUserData = async (email) => {        
+        const q = query(collection(db, 'petOwnerData'), where('email', '==', email)); //this is a firebase query to retrive user data from the database
+        const querySnapshot = await getDocs(q);    //waits for the results of the query and matches the qurery with criteria
         if (!querySnapshot.empty) {
-            const userData = querySnapshot.docs[0].data();
-            setProfileData(userData);
+            const userData = querySnapshot.docs[0].data();     //if the query is not empty, it fetches the data
+            setProfileData(userData);       //sets the profile data at the top of this page to the fetched data
         }
     };
 
@@ -67,25 +70,26 @@ function Navbar() {
         <nav className="nav">
             <Link to="/about" className="nav__brand">PetDome</Link>
             <ul className={active}>
-                {!isAuthenticated && (
+                
+                {!isAuthenticated && (  
+                                  //if the user is not logged in, display the login and register buttons
                     <>
                         <li className="nav__item"><Link to="/about" className="nav__link">About</Link></li>
                         <li className="nav__item"><Link to="/login" className="nav__link">Login</Link></li>
                         <li className="nav__item"><Link to="/register" className="nav__link">Register</Link></li>
                     </>
                 )}
-                {isAuthenticated && (
+                {isAuthenticated &&  (          //if the user is logged in, display the review, profile and logout buttons
                     <>
                         <li className="nav__item"><Link to="/about" className="nav__link">About</Link></li>
-                        
+                        <li className="nav__item"><Link to="/qualifications" className="nav__link">Qualifications</Link></li>
                         {profileData && profileData.isPetOwner ? (
-                            <li className="nav__item"><Link to="/review2" className="nav__link">Review</Link></li>
-                            
+                            <li className="nav__item"><Link to= '/review 2' className="nav__link">Review</Link></li>
+
+
                         ) : (
-                            <>
+
                             <li className="nav__item"><Link to="/review" className="nav__link">Review</Link></li>
-                            <li className="nav__item"><Link to="/qualifications" className="nav__link">Qualifications</Link></li>
-                            </>
                         )}
                         <li className="nav__item"><Link to="/profile" className="nav__link">Profile</Link></li>
                         <li className="nav__item"><Link to="/search" className="nav__link"><img src="/searchicon.png" alt="Search" className='nav__image' /></Link></li>
