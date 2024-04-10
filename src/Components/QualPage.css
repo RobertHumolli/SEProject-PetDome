@@ -6,15 +6,33 @@
     flex-direction: column;
     justify-content: center;
     align-items: center; /* Updated */
-    height: 100vh;
+    height: 100%;
+    width: 100%;
+    text-align: center;
 }
 
 .qual-container h1 {
-    font-size: 2rem;
+    font-size: 4rem;
     margin-bottom: 20px;
 }
 
-.qual-container p {
-    font-size: 1.2rem;
-    line-height: 1.6;
+.file_name {
+    font-size: 1.5rem;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.file_desc1 {
+    font-size: 2.5rem;
+    line-height: 0.5;
+    margin-top: 150px;
+    font-weight: bold;
+}
+
+.file_desc2 {
+    margin-top: 50px;
+}
+
+.upload{
+    margin-top: 50px;
 }
