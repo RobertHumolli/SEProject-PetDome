@@ -6,15 +6,17 @@
     flex-direction: column;
     justify-content: center;
     align-items: center; /* Updated */
-    height: 100vh;
+    height: 100%;
+    width: 100%;
 }
 
 .qual-container h1 {
-    font-size: 2rem;
+    font-size: 4rem;
     margin-bottom: 20px;
 }
 
 .qual-container p {
-    font-size: 1.2rem;
-    line-height: 1.6;
+    font-size: 1.5rem;
+    line-height: 0.5;
+    margin-top: 50px; 
 }
