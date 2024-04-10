@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './QualPage.css';
 
+
 function Qualifications() {
     const [files, setFiles] = useState([]);
 
@@ -20,7 +21,7 @@ function Qualifications() {
         // Display thank you message
         alert("Thank you for uploading your qualifications!");
     };
-
+    
     return (
         <div className="qual-container">
             <h1>Please upload your qualifications</h1>
