@@ -1,11 +1,12 @@
 # STARTING THE PET DOME PROTOTYPE WEB APPLICATION
 ## Please install the following
 
-## npm install
-## npm install firebase
-## npm install react-icons
-## npm install react-date-picker
-## npm install react-date-range
+### `npm install`
+### `npm install firebase`
+### `npm install react-icons`
+### `npm install react-date-picker`
+### `npm install react-date-range`
+
 
 
 
