@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import './Search.css'; // Make sure to create an App.css file with the styles you want
 import {data} from './data.js';
+import { useNavigate } from 'react-router-dom';
 
 function Search() {
   const [contacts, setContacts] = useState(data);
   const [search, setSearch] = useState('');
+  const navigate = useNavigate();
 
 console.log(data)
   return (
@@ -26,6 +28,7 @@ console.log(data)
             <th>Last Name</th>
             <th>Email</th>
             <th>City</th>
+            
           </tr>
         </thead>
         <tbody>
@@ -42,6 +45,7 @@ console.log(data)
                 <td>{item.last_name}</td>
                 <td>{item.email}</td>
                 <td>{item.city}</td>
+                <td><button onClick={() => navigate('/appointmentform')}>Book</button></td>
               </tr>
             ))}
         </tbody>

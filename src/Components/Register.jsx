@@ -66,7 +66,7 @@ function Register() {
 
                     await addDoc(profileDataRef, userData);
 
-                    navigate('/');
+                    navigate('/about');
                 }
             } catch (error) {
                 console.error('Error registering user:', error);

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import './Profile.css'; // Import the CSS file for styling
-import { db, auth } from './firebase'; //initialize Firebase
+import { db, auth } from './firebase'; // Initialize Firebase
 import { getDocs, collection, query, where, updateDoc, doc } from 'firebase/firestore';
 
 function Profile() {
-    const [currentUser, setCurrentUser] = useState(null);   
-    const [profileData, setProfileData] = useState(null);  
-    const [addingPet, setAddingPet] = useState(false);     
-    const [newPet, setNewPet] = useState({                 
+    const [currentUser, setCurrentUser] = useState(null);
+    const [profileData, setProfileData] = useState(null);
+    const [addingPet, setAddingPet] = useState(false);
+    const [newPet, setNewPet] = useState({
         petName: '',
         petAge: '',
         petInfo: ''
@@ -15,15 +15,15 @@ function Profile() {
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(user => {
-            setCurrentUser(user);                           
+            setCurrentUser(user);
             if (user) {
                 fetchUserData(user.email);
             }
         });
-        return unsubscribe;                     
+        return unsubscribe;
     }, []);
 
-    const fetchUserData = async (email) => {        
+    const fetchUserData = async (email) => {
         const q = query(collection(db, 'petOwnerData'), where('email', '==', email));
         const querySnapshot = await getDocs(q);
         if (!querySnapshot.empty) {
@@ -94,7 +94,6 @@ function Profile() {
                         <div className="profile-info">
                             {profileData.isPetOwner ? (
                                 <>
-        
                                     <p>Username: {profileData.username}</p>
                                     <p>Age: {profileData.age}</p>
                                     <p>Address: {profileData.location}</p>
