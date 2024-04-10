@@ -1,0 +1,136 @@
+
+*{
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  
+.form{
+    border: none;
+}  
+  .title{
+    font-size: 24px;
+    display: flex;
+    padding-left: 37%;
+    color: rgb(0, 0, 0);
+    color: white;
+  }
+  
+
+
+
+  .date{
+    font-size: 24px;
+    display: flex;
+    padding-top: 0%;
+    color: rgb(0, 0, 0);
+    color: white;
+    border: none;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .datepicker{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+  }
+  
+  .time{
+    font-size: 16px;
+    display: flex;
+    color: rgb(0, 0, 0);
+    border: none;
+    padding-left: 7%;
+  }
+  
+  textarea{
+    height: 45px;
+  }
+
+  .extras{
+    font-size: 16px;
+    display: flex;
+    color: rgb(0, 0, 0);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .extraText{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70%;
+    height: 8vh;
+    padding-left: 30%;
+    
+  }
+  
+  .subbutton {
+    --color: #560bad;
+    font-family: Arial, Helvetica, sans-serif;
+    display: inline-block;
+    width: 8em;
+    height: 2.8em;
+    line-height: 2.5em;
+    margin: 20px;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid var(--color);
+    transition: color .5s;
+    z-index: 1;
+    font-size: 17px;
+    border-radius: 6px;
+    font-weight: 500;
+    color: var(--color);
+   }
+   
+   .subbutton:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    background: var(--color);
+    height: 150px;
+    width: 200px;
+    border-radius: 50%;
+   }
+   
+   .subbutton:hover {
+    color: #fff;
+   }
+   
+   .subbutton:before {
+    top: 100%;
+    left: 100%;
+    transition: all .7s;
+   }
+   
+   .subbutton:hover:before {
+    top: -30px;
+    left: -30px;
+   }
+   
+   .subbutton:active:before {
+    background: #3a0ca3;
+    transition: background 0s;
+  }
+  
+  .subbutton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    bottom: 5px;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+  
+  
+  
+  .calendar{
+    padding-left: 7%;
+  }
