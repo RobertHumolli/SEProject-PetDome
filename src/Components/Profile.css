@@ -193,4 +193,57 @@ h2{
 .profile-info {
     text-align: left;
 }
+
+
+
+/* Profile.css */
+
+
+
+.profile-info {
+  margin-top: 20px;
+}
+
+.profile-info input[type="text"],
+.profile-info input[type="number"],
+.profile-info textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.profile-info input[type="text"]:focus,
+.profile-info input[type="number"]:focus,
+.profile-info textarea:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.profile-info button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.profile-info button:hover {
+  background-color: #0056b3;
+}
+
+.profile-info button:disabled {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
+}
+
+.profile-info button:last-child {
+  margin-right: 0;
+}
+
  
