@@ -1,10 +1,9 @@
-import React, { createContext, useContext, useState, useEffect }, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Navbar from './Components/Navbar';
 import AboutPage from './Components/AboutPage';
 import Profile from './Components/Profile';
 import reviewPage from './Components/reviewPage';
-import reviewPage2 from './Components/reviewPage2';
 import reviewPage2 from './Components/reviewPage2';
 import Login from './Components/Login';
 import Register from './Components/Register';
@@ -14,7 +13,6 @@ import Profile2 from './Components/Profile 2';
 import Search from './Components/Search';
 import AppointmentForm from './Components/AppointmentForm';
 
-import Profile2 from './Components/Profile 2';
 
 const colors = {
   orange: "#FFBA5A",
@@ -56,8 +54,8 @@ function App() {
 
   return (
     <Router>
-      <ProfileDataContext.Provider value={{ profileData }}>
-      <ProfileDataContext.Provider value={{ profileData }}>
+      <ProfileDataContext.Provider value={{profileData}}>
+
         <Navbar />
         <Routes>
             <Route path="/" exact Component={home} /> {/* 'component' prop is replaced with 'element' */}
@@ -70,11 +68,8 @@ function App() {
             <Route path="/Profile" Component={Profile} /> {/* 'component' prop is replaced with 'element' */}
             <Route path="/Profile 2" Component={Profile2} /> {/* 'component' prop is replaced with 'element' */}
             <Route path="/Search" Component={Search} /> {/* 'component' prop is replaced with 'element' */}
-            <Route path="/review2" Component={reviewPage2} /> {/* 'component' prop is replaced with 'element' */}
-            <Route path="/Profile2" Component={Profile2} /> {/* 'component' prop is replaced with 'element' */}
             <Route path="/appointmentform" Component={AppointmentForm} /> {/* 'component' prop is replaced with 'element' */}
         </Routes>
-          </ProfileDataContext.Provider>
       </ProfileDataContext.Provider>
     </Router>
   );

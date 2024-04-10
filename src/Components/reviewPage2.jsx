@@ -17,6 +17,7 @@ const ReviewPage = () => { // Corrected component name to start with uppercase l
   const [myPet, setMyPet] = useState("Dog");
   const [otherPetInfo, setOtherPetInfo] = useState('');
   const [feedback, setFeedback] = useState('');
+  const [petMindersName, setPetMindersName] = useState('');
 
   const handleSubmit = (e)=> {
     e.preventDefault();
@@ -37,7 +38,7 @@ const ReviewPage = () => { // Corrected component name to start with uppercase l
       alert("This feedback form cannot be left blank")
     }
     else{
-      alert("Form has been")
+      alert("Form has been submitted")
     }
   
   }
@@ -47,6 +48,12 @@ const ReviewPage = () => { // Corrected component name to start with uppercase l
   const handleFeedback = event => {
     const { value } = event.target;
     setFeedback(value);
+    
+  }
+
+  const handlePetMinderName= event => {
+    const { value } = event.target;
+    setPetMindersName(value);
     
   }
 
@@ -104,6 +111,17 @@ const ReviewPage = () => { // Corrected component name to start with uppercase l
           />
         ))}
       </div>
+      <div>
+      <h4> What was the pet minder's name?</h4>
+     
+      <textarea
+          type="text"
+          value={petMindersName}
+          onChange={handlePetMinderName}
+          placeholder="Enter the pet minder's name..."
+          style={styles.textInput}
+        />
+      </div>
       <div style={styles.container}>
         <h4> What type of pet did the pet minder take care of?</h4>
         <form style={styles.form}>
@@ -155,6 +173,7 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    colors: "black",
   },
 
   textarea: {
@@ -165,7 +184,11 @@ const styles = {
     minHeight: 100,
     width: 300,
     cursor: "pointer", // Cursor style
+  
   },
+
+
+
   button: {
     border: "1px solid #a9a9a9",
     borderRadius: 5,
@@ -181,22 +204,33 @@ const styles = {
   },
 
   select: {
-    width: "100%", // Make the select element fill its container width
-    padding: 8, // Padding
-    fontSize: 16, // Font size
-    border: "1px solid #a9a9a9", // Border color
-    borderRadius: 5, // Border radius
-    backgroundColor: "#fff", // Background color
-    cursor: "pointer", // Cursor style
+    width: "100%", 
+    padding: 8, 
+    fontSize: 16, 
+    border: "1px solid #a9a9a9", 
+    borderRadius: 5, 
+    backgroundColor: "#fff",
+    cursor: "pointer",
   },
   smallTextArea: {
-    height: 50, // Adjust the height as needed
-    marginTop: 10, // Add some space between the select and the text area
-    resize: "vertical", // Allow vertical resizing if needed
+    height: 50,
+    marginTop: 10,
+    resize: "vertical", 
+    color: "black",
   
   button: {
 
+  },
+
+  textarea2: {
+    border: "1px solid #a9a9a9",
+    borderRadius: 5,
+    padding: 10,
+    margin: "20px 0",
+    width: 300,
+    cursor: "pointer",
   }
+
 }
 
 }

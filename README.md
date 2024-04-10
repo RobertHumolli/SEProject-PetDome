@@ -1,3 +1,15 @@
+# STARTING THE PET DOME PROTOTYPE WEB APPLICATION
+## Please install the following
+
+npm install
+npm install react-icons
+npm install react-date-picker
+npm install react-date-range
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

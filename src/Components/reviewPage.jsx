@@ -21,6 +21,7 @@ const ReviewPage = () => { // Corrected component name to start with uppercase l
   const [myPet, setMyPet] = useState("Dog");
   const [otherPetInfo, setOtherPetInfo] = useState('');
   const [feedback, setFeedback] = useState('');
+  const [petOwnersName, setPetOwnerName] = useState('');
 
   const handleSubmit = (e)=> {
     e.preventDefault();
@@ -41,11 +42,17 @@ const ReviewPage = () => { // Corrected component name to start with uppercase l
       alert("This feedback form cannot be left blank")
     }
     else{
-      alert("Form has been")
+      alert("Form has been submitted")
     }
   
   }
   
+
+  const handlePetownerName= event => {
+    const { value } = event.target;
+    setPetOwnerName(value);
+    
+  }
 
 
   const handleFeedback = event => {
@@ -87,8 +94,7 @@ const ReviewPage = () => { // Corrected component name to start with uppercase l
   return (
     <div style={styles.container}>
       <div>
-        <h1 style={styles.container}>Review Page for pet minder</h1>
-        <h1 style={styles.container}>Review Page for pet minder</h1>
+        <h1 style={styles.container}>Review Page For Pet Minder</h1>
         <br/>
         <h4 style={styles.container}>Rate the service</h4>
         <br/>
@@ -108,9 +114,26 @@ const ReviewPage = () => { // Corrected component name to start with uppercase l
             }}
           />
         ))}
+        <div>
+          <br />
+        </div>
+      </div>
+      <div>
+      <h4> What was the pet owner's name?</h4>
+      <div>
+          <br />
+        </div>
+     
+      <textarea
+          type="text"
+          value={petOwnersName}
+          onChange={handlePetownerName}
+          placeholder="Enter the pet owners's name..."
+          style={styles.textInput}
+        />
       </div>
       <div style={styles.container}>
-        <h4> Leave a rating for the Pet Owner</h4>
+        <h4> What type of pet did you take care of?</h4>
         <form style={styles.form}>
         
             <select value={myPet} onChange={handleChange1} style={styles.select}>
@@ -126,7 +149,7 @@ const ReviewPage = () => { // Corrected component name to start with uppercase l
            value={otherPetInfo}
            onChange={(e)=>setOtherPetInfo(e.target.value)}
           //  {handleOtherPetInfoChange}
-           placeholder="Please specify..."
+           placeholder="Please specify.."
            style={{ ...styles.select, ...styles.smallTextArea }}
          />
 
@@ -160,6 +183,7 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    colors: "black",
   },
 
   textarea: {
@@ -170,13 +194,16 @@ const styles = {
     minHeight: 100,
     width: 300,
     cursor: "pointer", // Cursor style
+  
   },
   button: {
     border: "1px solid #a9a9a9",
     borderRadius: 5,
     width: 300,
-    padding: 10,
+    padding: 10, 
+    
   },
+
   form:{
     borderRadius: 5,
     padding: 10,
@@ -186,21 +213,22 @@ const styles = {
   },
 
   select: {
-    width: "100%", // Make the select element fill its container width
-    padding: 8, // Padding
-    fontSize: 16, // Font size
-    border: "1px solid #a9a9a9", // Border color
-    borderRadius: 5, // Border radius
-    backgroundColor: "#fff", // Background color
-    cursor: "pointer", // Cursor style
+    width: "100%", 
+    padding: 8, 
+    fontSize: 16, 
+    border: "1px solid #a9a9a9", 
+    borderRadius: 5, 
+    backgroundColor: "#fff", 
+    cursor: "pointer", 
   },
   smallTextArea: {
-    height: 50, // Adjust the height as needed
-    marginTop: 10, // Add some space between the select and the text area
-    resize: "vertical", // Allow vertical resizing if needed
+    height: 50, 
+    marginTop: 10, 
+    resize: "vertical", 
+    color: "black",
   
-  button: {
-
+  placeholder: {
+    
   }
 }
 

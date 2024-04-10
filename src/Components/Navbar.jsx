@@ -16,7 +16,6 @@ function Navbar() {
     const [toggleIcon, setToggleIcon] = useState('nav__toggler');
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [profileData, setProfileData] = useState(null);
-    const location = useLocation();
 
     const navigate = useNavigate();
 
