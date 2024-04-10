@@ -8,7 +8,8 @@ import Login from './Components/Login';
 import Register from './Components/Register';
 import Qualifications from './Components/QualPage';
 import home from './Components/home';
-import Appointment from './Components/AppointmentForm'
+import Search from './Components/Search';
+
 
 const colors = {
   orange: "#FFBA5A",
@@ -31,10 +32,10 @@ function App() {
             <Route path="/About" Component={AboutPage} /> {/* 'component' prop is replaced with 'element' */}
             <Route path="/review" Component={reviewPage} /> {/* 'component' prop is replaced with 'element' */}
             <Route path="/Login" Component={Login} /> {/* 'component' prop is replaced with 'element' */}
-            <Route path="/Register" Component={Register} /> {/* 'component' prop is replaced with 'element' */}
+            <Route path="/register" Component={Register} /> {/* 'component' prop is replaced with 'element' */}
             <Route path="/Qualifications" Component={Qualifications} /> {/* 'component' prop is replaced with 'element' */}
             <Route path="/Profile" Component={Profile} /> {/* 'component' prop is replaced with 'element' */}
-            <Route path="/Appointment" Component={Appointment} /> {/* 'component' prop is replaced with 'element' */}
+            <Route path="/Search" Component={Search} /> {/* 'component' prop is replaced with 'element' */}
           </Routes>
         
     </Router>
