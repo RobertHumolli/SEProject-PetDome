@@ -6,11 +6,16 @@ import { getDocs, collection, query, where, updateDoc, doc } from 'firebase/fire
 function Profile() {
     const [currentUser, setCurrentUser] = useState(null);
     const [profileData, setProfileData] = useState(null);
+    const [editingProfile, setEditingProfile] = useState(false);
     const [addingPet, setAddingPet] = useState(false);
     const [newPet, setNewPet] = useState({
         petName: '',
         petAge: '',
         petInfo: ''
+    });
+    const [updatedProfile, setUpdatedProfile] = useState({
+        age: '',
+        location: ''
     });
 
     useEffect(() => {
@@ -29,6 +34,28 @@ function Profile() {
         if (!querySnapshot.empty) {
             const userData = querySnapshot.docs[0].data();
             setProfileData({ ...userData, id: querySnapshot.docs[0].id });
+            setUpdatedProfile({ age: userData.age, location: userData.location });
+        }
+    };
+
+    const handleEditProfile = () => {
+        setEditingProfile(true);
+    };
+
+    const handleCancelEditProfile = () => {
+        setEditingProfile(false);
+        // Reset updatedProfile to current profileData
+        setUpdatedProfile({ age: profileData.age, location: profileData.location });
+    };
+
+    const handleSaveProfile = async () => {
+        try {
+            await updateDoc(doc(db, 'petOwnerData', profileData.id), updatedProfile);
+            setEditingProfile(false);
+            fetchUserData(currentUser.email); // Fetch user data again to reflect changes
+        } catch (error) {
+            console.error('Error updating profile:', error);
+            // Handle error
         }
     };
 
@@ -76,6 +103,14 @@ function Profile() {
         }
     };
 
+    const handleChangeProfile = (e) => {
+        const { name, value } = e.target;
+        setUpdatedProfile(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
+    };
+
     const handleChangeNewPet = (e) => {
         const { name, value } = e.target;
         setNewPet(prevState => ({
@@ -92,11 +127,25 @@ function Profile() {
                     <p>Welcome, {currentUser.email}</p>
                     {profileData && (
                         <div className="profile-info">
-                            {profileData.isPetOwner ? (
-                                <>
-                                    <p>Username: {profileData.username}</p>
+                            {editingProfile ? (
+                                <div>
+                                    <p>Email: {currentUser.email}</p>
+                                    <input type="text" name="age" value={updatedProfile.age} onChange={handleChangeProfile} />
+                                    <input type="text" name="location" value={updatedProfile.location} onChange={handleChangeProfile} />
+                                    <button onClick={handleSaveProfile}>Save Profile</button>
+                                    <button onClick={handleCancelEditProfile}>Cancel</button>
+                                </div>
+                            ) : (
+                                <div>
+                                    <p>Email: {currentUser.email}</p>
                                     <p>Age: {profileData.age}</p>
                                     <p>Address: {profileData.location}</p>
+                                    <button onClick={handleEditProfile}>Edit Profile</button>
+                                </div>
+                            )}
+                            {profileData.isPetOwner && (
+                                <>
+                                    <h3>Pets</h3>
                                     {Object.keys(profileData.pets).map((petKey, index) => (
                                         <div key={index}>
                                             <p>Pet Name: {profileData.pets[petKey].petName}</p>
@@ -116,12 +165,6 @@ function Profile() {
                                     ) : (
                                         <button onClick={handleAddPet}>Add Pet</button>
                                     )}
-                                </>
-                            ) : (
-                                <>
-                                    <p>Username: {profileData.username}</p>
-                                    <p>Age: {profileData.age}</p>
-                                    <p>Address: {profileData.location}</p>
                                 </>
                             )}
                         </div>
