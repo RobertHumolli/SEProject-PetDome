@@ -22,7 +22,7 @@ function Qualifications() {
             {files.length > 0 ? (
                 <div>
                     <p class ="file_desc1">Thank you for uploading the following files:</p>
-                    <p class = "file_desc2">Click on the 'Remove' button to remove a file.</p>
+                    <p class = "file_desc2">Click on the 'Remove' button to remove a file. Files not removed are automatically uploaded.</p>
                     {files.map((file, index) => (
                         <div key={index}>
                             <p className='file_name'>{file.name}</p>

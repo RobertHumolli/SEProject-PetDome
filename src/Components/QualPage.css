@@ -8,6 +8,7 @@
     align-items: center; /* Updated */
     height: 100%;
     width: 100%;
+    text-align: center;
 }
 
 .qual-container h1 {
@@ -29,5 +30,5 @@
 }
 
 .file_desc2 {
-    margin-top: 50px
+    margin-top: 50px;
 }
