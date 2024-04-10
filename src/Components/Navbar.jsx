@@ -58,7 +58,9 @@ function Navbar() {
                         <li className="nav__item"><Link to="/qualifications" className="nav__link">Qualifications</Link></li>
                         <li className="nav__item"><Link to="/review" className="nav__link">Review</Link></li>
                         <li className="nav__item"><Link to="/profile" className="nav__link">Profile</Link></li>
+                        <li className="nav__item"><Link to="/appointment" className="nav__link">Appointment</Link></li>
                         <li className="nav__item"><button onClick={handleLogout} className="nav__link">Logout</button></li>
+                        
                     </>
                 )}
             </ul>
