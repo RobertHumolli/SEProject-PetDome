@@ -3,21 +3,27 @@ import { Link } from 'react-router-dom';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { auth, db } from './firebase';
 import './Navbar.css';
-// import { getDocs, collection, query, where } from 'firebase/firestore';
-import { getDocs, collection, query, where} from 'firebase/firestore';
-// import { useProfileData } from'./Profile';
+import { getDocs, collection, query, where } from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom';
+
+
+
+
 
 
 function Navbar() {
     const [active, setActive] = useState('nav__menu');
     const [toggleIcon, setToggleIcon] = useState('nav__toggler');
-    const [isAuthenticated, setIsAuthenticated] = useState(false);        //initialize the state to be used to know if the user is logged in
-
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [profileData, setProfileData] = useState(null);
+    const location = useLocation();
+
+    const navigate = useNavigate();
 
 
-    useEffect(() => {       //use effect to check if the user is logged in and set the state accordingly
-        const unsubscribe = onAuthStateChanged(auth, async (user) => {   
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, async (user) => {
             setIsAuthenticated(!!user);
             if (user) {
                 fetchUserData(user.email);
@@ -37,15 +43,16 @@ function Navbar() {
         }
     }, [isAuthenticated]);
 
-    const navToggle = () => {          //function to toggle the navigation bar 
+    const navToggle = () => {
         setActive(active === 'nav__menu' ? 'nav__menu nav__active' : 'nav__menu');
         setToggleIcon(toggleIcon === 'nav__toggler' ? 'nav__toggler toggle' : 'nav__toggler');
     };
 
-    const handleLogout = async () => {               //logout function
+    const handleLogout = async () => {
         try {
             await signOut(auth);
             setIsAuthenticated(false);
+            navigate('/login');
         } catch (error) {
             console.error('Error signing out:', error);
         }
@@ -69,10 +76,8 @@ function Navbar() {
                                   //if the user is not logged in, display the login and register buttons
                     <>
                         <li className="nav__item"><Link to="/about" className="nav__link">About</Link></li>
-                        <li className="nav__item"><Link to="/qualifications" className="nav__link">Qualifications</Link></li>
                         <li className="nav__item"><Link to="/login" className="nav__link">Login</Link></li>
                         <li className="nav__item"><Link to="/register" className="nav__link">Register</Link></li>
-                        
                     </>
                 )}
                 {isAuthenticated &&  (          //if the user is logged in, display the review, profile and logout buttons

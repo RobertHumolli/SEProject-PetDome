@@ -1,9 +1,13 @@
 // REVIEW PAGE FOR PET MINDER 
 
 
+// REVIEW PAGE FOR PET MINDER 
+
+
 import React, { useState } from 'react';
 import './reviewPage.css';
 import { FaStar } from "react-icons/fa";
+
 
 
 const colors = {
@@ -84,6 +88,7 @@ const ReviewPage = () => { // Corrected component name to start with uppercase l
     <div style={styles.container}>
       <div>
         <h1 style={styles.container}>Review Page for pet minder</h1>
+        <h1 style={styles.container}>Review Page for pet minder</h1>
         <br/>
         <h4 style={styles.container}>Rate the service</h4>
         <br/>
@@ -105,7 +110,7 @@ const ReviewPage = () => { // Corrected component name to start with uppercase l
         ))}
       </div>
       <div style={styles.container}>
-        <h4> What type of pet did you take care of?</h4>
+        <h4> Leave a rating for the Pet Owner</h4>
         <form style={styles.form}>
         
             <select value={myPet} onChange={handleChange1} style={styles.select}>
@@ -202,6 +207,5 @@ const styles = {
 }
 
 export default ReviewPage;
-
 
 
