@@ -51,6 +51,12 @@ function Profile() {
     };
 
     const handleSaveProfile = async () => {
+        // Check if age and location fields are empty
+        if (!updatedProfile.age || !updatedProfile.location) {
+            alert('Please dont leave any fields blank.');
+            return;
+        }
+    
         try {
             await updateDoc(doc(db, 'petOwnerData', profileData.id), updatedProfile);
             setEditingProfile(false);
@@ -60,7 +66,7 @@ function Profile() {
             // Handle error
         }
     };
-
+    
     const handleAddPet = () => {
         setAddingPet(true);
     };
@@ -70,10 +76,16 @@ function Profile() {
     };
 
     const handleSavePet = async () => {
+        // Check if any of the add pet fields are empty
+        if (!newPet.petName || !newPet.petAge || !newPet.petInfo) {
+            alert('Please don\'t leave any fields blank.');
+            return;
+        }
+    
         const newPetObj = {
             [`pet${Date.now()}`]: newPet
         };
-
+    
         try {
             await updateDoc(doc(db, 'petOwnerData', profileData.id), {
                 pets: {
@@ -89,6 +101,7 @@ function Profile() {
             // Handle error
         }
     };
+    
 
     const handleDeletePet = async (petKey) => {
         // Create a copy of the pets object without the pet to be deleted
@@ -132,8 +145,8 @@ function Profile() {
                             {editingProfile ? (
                                 <div>
                                     <p>Email: {currentUser.email}</p>
-                                    <input type="text" name="age" value={updatedProfile.age} onChange={handleChangeProfile} />
-                                    <input type="text" name="location" value={updatedProfile.location} onChange={handleChangeProfile} />
+                                    <input type="number" name="age" value={updatedProfile.age} onChange={handleChangeProfile} required />
+                                    <input type="text" name="location" value={updatedProfile.location} onChange={handleChangeProfile} required/>
                                     <button onClick={handleSaveProfile}>Save Profile</button>
                                     <button onClick={handleCancelEditProfile}>Cancel</button>
                                 </div>
@@ -177,6 +190,7 @@ function Profile() {
             )}
         </div>
     );
+    
 }
 
 export default Profile;
