@@ -82,7 +82,17 @@ function Navbar() {
                 {isAuthenticated &&  (          //if the user is logged in, display the review, profile and logout buttons
                     <>
                         <li className="nav__item"><Link to="/about" className="nav__link">About</Link></li>
-                        <li className="nav__item"><Link to="/qualifications" className="nav__link">Qualifications</Link></li>
+
+                        {profileData && profileData.isPetOwner ? (
+                            <li className="nav__item"><Link to="" className="nav__link"></Link></li>
+
+                        ) : (
+
+                            <li className="nav__item"><Link to="/qualifications" className="nav__link">Qualifications</Link></li>
+                            
+
+                        )}
+                        
                         {profileData && profileData.isPetOwner ? (
                             <li className="nav__item"><Link to= '/review 2' className="nav__link">Review</Link></li>
 
@@ -91,8 +101,22 @@ function Navbar() {
 
                             <li className="nav__item"><Link to="/review" className="nav__link">Review</Link></li>
                         )}
+
+
                         <li className="nav__item"><Link to="/profile" className="nav__link">Profile</Link></li>
-                        <li className="nav__item"><Link to="/search" className="nav__link"><img src="/searchicon.png" alt="Search" className='nav__image' /></Link></li>
+
+
+                        {profileData && profileData.isPetOwner ? (
+                            <li className="nav__item"><Link to="/search" className="nav__link"><img src="/searchicon.png" alt="Search" className='nav__image' /></Link></li>
+
+
+                        ) : (
+
+                            <li className="nav__item"><Link to="" className="nav__link"><img src="" alt="" className='nav__image' /></Link></li>
+                        )}
+
+
+                        
                         <li className="nav__item"><button onClick={handleLogout} className="nav__link">Logout</button></li>
                     </>
                 )}
