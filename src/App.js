@@ -58,8 +58,7 @@ function App() {
 
         <Navbar />
         <Routes>
-            <Route path="/" exact Component={home} /> {/* 'component' prop is replaced with 'element' */}
-            <Route path="/About" Component={AboutPage} /> {/* 'component' prop is replaced with 'element' */}
+            <Route path="/" exact Component={Register} /> {/* 'component' prop is replaced with 'element' */}
             <Route path="/review" Component={reviewPage} /> {/* 'component' prop is replaced with 'element' */}
             <Route path="/review 2" Component={reviewPage2} /> {/* 'component' prop is replaced with 'element' */}
             <Route path="/Login" Component={Login} /> {/* 'component' prop is replaced with 'element' */}
