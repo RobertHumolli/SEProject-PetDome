@@ -1,5 +1,4 @@
 import React, {useState} from "react"
-import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
 import './AppointmentForm.css'
 import DateRangePickerComp from './DateRangePickerComp.jsx'
@@ -11,7 +10,62 @@ function testFunc(){
 
 const AppointmentForm = () => {
 
-    const [selectedDate, setSelectedDate] = useState(null);
+    const [petMindersName, setPetMindersName] = useState('');
+    const [petName, setPetName] = useState('');
+    const [petAge, setPetAge] = useState('');
+    const [petBreed, setBreed] = useState('');
+
+
+
+    const handleSubmit = (e)=> {
+        e.preventDefault();
+    
+        const feedbackForm = {petMindersName, petName, petAge,petBreed};
+        console.log(feedbackForm);
+    
+        if(petMindersName === ''){
+          alert("Please enter the pet minders name")
+        }
+        else if (petName === ''){
+          alert("Please enter the pet's name")
+        }
+        else if (isNaN(petAge) || petAge ===''){
+          alert("Please enter a number for the pet's age")
+        }
+        else if (petBreed === ''){
+            alert("Please enter the pet's breed")
+        }
+        else{
+          alert("Form has been submitted")
+        }
+      
+      
+    }
+
+
+    const handlePetName = event => {
+        const { value } = event.target;
+        setPetName(value);
+        
+      }
+    
+      const handlePetMinderName= event => {
+        const { value } = event.target;
+        setPetMindersName(value);
+        
+      }
+
+      const handleBreed = event => {
+        const { value } = event.target;
+        setBreed(value);
+        
+      }
+    
+      const handlePetAge= event => {
+        const { value } = event.target;
+        setPetAge(value);
+        
+      }
 
     
   
@@ -28,7 +82,11 @@ const AppointmentForm = () => {
 
         <span></span>
         <div className="extraText">
-            <textarea type = "text" placeholder='Pet minders name'>
+            <textarea 
+            value={petMindersName} 
+            onChange={handlePetMinderName}
+            type = "text"
+            placeholder='Pet minders name'>
             </textarea>
         </div>
 
@@ -36,7 +94,11 @@ const AppointmentForm = () => {
 
         <span></span>
         <div className="extraText">
-            <textarea type = "text" placeholder='Pets name'>
+            <textarea
+            value={petName} 
+            onChange={handlePetName}
+            type = "text" 
+            placeholder='Pets name'>
             </textarea>
         </div>
 
@@ -44,7 +106,11 @@ const AppointmentForm = () => {
 
         <span></span>
         <div className="extraText">
-            <textarea type = "text" placeholder='Pets age'>
+            <textarea 
+            type = "number"
+            value={petAge} 
+            onChange={handlePetAge} 
+            placeholder='Pets age'>
             </textarea>
         </div>
 
@@ -52,7 +118,11 @@ const AppointmentForm = () => {
 
         <span></span>
         <div className="extraText">
-            <textarea type = "text" placeholder='Pets breed'>
+            <textarea 
+            type = "text" 
+            value={petBreed} 
+            onChange={handleBreed}
+            placeholder='Pets breed'>
             </textarea>
         </div>
 
@@ -65,7 +135,7 @@ const AppointmentForm = () => {
         </div>
         
 
-        <button className="subbutton" onClick={testFunc}> Submit </button>
+        <button className="subbutton" onClick={handleSubmit}> Submit </button>
     </div>
     );
 }
