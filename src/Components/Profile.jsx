@@ -76,10 +76,16 @@ function Profile() {
     };
 
     const handleSavePet = async () => {
+        // Check if any of the add pet fields are empty
+        if (!newPet.petName || !newPet.petAge || !newPet.petInfo) {
+            alert('Please don\'t leave any fields blank.');
+            return;
+        }
+    
         const newPetObj = {
             [`pet${Date.now()}`]: newPet
         };
-
+    
         try {
             await updateDoc(doc(db, 'petOwnerData', profileData.id), {
                 pets: {
@@ -95,6 +101,7 @@ function Profile() {
             // Handle error
         }
     };
+    
 
     const handleDeletePet = async (petKey) => {
         // Create a copy of the pets object without the pet to be deleted
