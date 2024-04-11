@@ -7,6 +7,7 @@
 import React, { useState } from 'react';
 import './reviewPage.css';
 import { FaStar } from "react-icons/fa";
+import axios from 'axios';
 
 
 
@@ -42,8 +43,20 @@ const ReviewPage = () => { // Corrected component name to start with uppercase l
       alert("This feedback form cannot be left blank")
     }
     else{
-      alert("Form has been submitted")
+      alert("This form has been submitted. Thank you for your feedback")
+      const url = "http://localhost/react-backend/submit_review.php";
+      let fData =new FormData();
+      fData.append('currentvalue',currentValue);
+      fData.append('myPet',myPet);
+      fData.append('feedback',feedback);
+      
+
+      axios.post(url,fData) 
+      .then (response=> alert(response.data))
+      .catch (error =>alert(error));
     }
+   
+    
   
   }
   

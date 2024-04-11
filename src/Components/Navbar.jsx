@@ -80,7 +80,7 @@ function Navbar() {
                 )}
                 {isAuthenticated &&  (          //if the user is logged in, display the review, profile and logout buttons
                     <>
-                        <li className="nav__item"><Link to="/about" className="nav__link">About</Link></li>
+                        
 
                         {profileData && profileData.isPetOwner ? (
                             <li className="nav__item"><Link to="" className="nav__link"></Link></li>
