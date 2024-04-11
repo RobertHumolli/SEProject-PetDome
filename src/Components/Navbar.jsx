@@ -112,7 +112,7 @@ function Navbar() {
 
                         ) : (
 
-                            <li className="nav__item"><Link to="" className="nav__link"><img src="" alt="" className='nav__image' /></Link></li>
+                            <li className="nav__item"><Link to="" className="nav__link"></Link></li>
                         )}
 
 
