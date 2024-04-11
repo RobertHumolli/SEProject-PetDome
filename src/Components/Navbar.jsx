@@ -68,20 +68,19 @@ function Navbar() {
 
     return (
         <nav className="nav">
-            <Link to="/about" className="nav__brand">PetDome</Link>
+            <h1 to="" className="nav__brand">PetDome</h1>
             <ul className={active}>
                 
                 {!isAuthenticated && (  
                                   //if the user is not logged in, display the login and register buttons
                     <>
-                        <li className="nav__item"><Link to="/about" className="nav__link">About</Link></li>
                         <li className="nav__item"><Link to="/login" className="nav__link">Login</Link></li>
                         <li className="nav__item"><Link to="/register" className="nav__link">Register</Link></li>
                     </>
                 )}
                 {isAuthenticated &&  (          //if the user is logged in, display the review, profile and logout buttons
                     <>
-                        <li className="nav__item"><Link to="/about" className="nav__link">About</Link></li>
+                        
 
                         {profileData && profileData.isPetOwner ? (
                             <li className="nav__item"><Link to="" className="nav__link"></Link></li>
@@ -114,6 +113,19 @@ function Navbar() {
 
                             <li className="nav__item"><Link to="" className="nav__link"></Link></li>
                         )}
+
+
+
+                        {profileData && profileData.isPetOwner ? (
+                             <li className="nav__item"><Link to="/AppointmentForm" className="nav__link">Book Appoinment</Link></li>
+
+
+                        ) : (
+
+                            <li className="nav__item"><Link to="" className="nav__link"></Link></li>
+                        )}
+
+
 
 
                         
