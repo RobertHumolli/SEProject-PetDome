@@ -115,6 +115,19 @@ function Navbar() {
                         )}
 
 
+
+                        {profileData && profileData.isPetOwner ? (
+                             <li className="nav__item"><Link to="/AppointmentForm" className="nav__link">Book Appoinment</Link></li>
+
+
+                        ) : (
+
+                            <li className="nav__item"><Link to="" className="nav__link"></Link></li>
+                        )}
+
+
+
+
                         
                         <li className="nav__item"><button onClick={handleLogout} className="nav__link">Logout</button></li>
                     </>
