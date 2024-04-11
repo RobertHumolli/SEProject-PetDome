@@ -68,13 +68,12 @@ function Navbar() {
 
     return (
         <nav className="nav">
-            <Link to="/about" className="nav__brand">PetDome</Link>
+            <Link to="" className="nav__brand">PetDome</Link>
             <ul className={active}>
                 
                 {!isAuthenticated && (  
                                   //if the user is not logged in, display the login and register buttons
                     <>
-                        <li className="nav__item"><Link to="/about" className="nav__link">About</Link></li>
                         <li className="nav__item"><Link to="/login" className="nav__link">Login</Link></li>
                         <li className="nav__item"><Link to="/register" className="nav__link">Register</Link></li>
                     </>
