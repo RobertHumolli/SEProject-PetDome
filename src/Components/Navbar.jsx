@@ -68,7 +68,7 @@ function Navbar() {
 
     return (
         <nav className="nav">
-            <Link to="" className="nav__brand">PetDome</Link>
+            <h1 to="" className="nav__brand">PetDome</h1>
             <ul className={active}>
                 
                 {!isAuthenticated && (  
